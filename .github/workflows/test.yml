@@ -19,6 +19,6 @@ jobs:
         # echo "v0.0.1" | grep --perl-regexp 'v\d+\.\d+' -o
       - name: Get package versions
         run: |
-          "echo 'MAJOR VERSION: ${{ steps.pkg_versions.outputs.MAJOR_VERSION }}'"
-          "echo 'MINOR VERSION: ${{ steps.pkg_versions.outputs.MINOR_VERSION }}'"
-          "echo 'PATCH VERSION: ${{ steps.pkg_versions.outputs.PATCH_VERSION }}'"
+          echo 'MAJOR VERSION: ${{ steps.pkg_versions.outputs.MAJOR_VERSION }}';
+          echo 'MINOR VERSION: ${{ steps.pkg_versions.outputs.MINOR_VERSION }}';
+          echo 'PATCH VERSION: ${{ steps.pkg_versions.outputs.PATCH_VERSION }}';
