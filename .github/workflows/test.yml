@@ -3,14 +3,12 @@ on:
   push
 jobs:
   regex-test:
-    env:
-      PKG_VERSION: v12.34.56
     runs-on: ubuntu-latest
     steps:
       - name: Set package versions
         id: pkg_versions
         env:
-          PKG_VERSION: ${{ github.event.registry_package.package_version.version }}
+          PKG_VERSION: v12.34.56
         run: |
           MAJOR_VERSION=$(echo ${{ env.PKG_VERSION }} | grep --perl-regexp 'v\d+' -o);
           MINOR_VERSION=$(echo ${{ env.PKG_VERSION }} | grep --perl-regexp 'v\d+\.\d+' -o);
