@@ -9,14 +9,15 @@ jobs:
     steps:
       - name: Set package versions
         id: pkg_versions
+        env:
+          PKG_VERSION: ${{ github.event.registry_package.package_version.version }}
         run: |
-          MAJOR_VERSION=$(echo "v0.0.1" | grep --perl-regexp 'v\d+' -o);
-          MINOR_VERSION=$(echo "v0.0.1" | grep --perl-regexp 'v\d+\.\d+' -o);
-          PATCH_VERSION=$(echo "v0.0.1" | grep --perl-regexp 'v\d+\.\d+\.\d+' -o);
+          MAJOR_VERSION=$(echo ${{ env.PKG_VERSION }} | grep --perl-regexp 'v\d+' -o);
+          MINOR_VERSION=$(echo ${{ env.PKG_VERSION }} | grep --perl-regexp 'v\d+\.\d+' -o);
+          PATCH_VERSION=$(echo ${{ env.PKG_VERSION }} | grep --perl-regexp 'v\d+\.\d+\.\d+' -o);
           echo "::set-output name=MAJOR_VERSION::$MAJOR_VERSION";
           echo "::set-output name=MINOR_VERSION::$MINOR_VERSION";
           echo "::set-output name=PATCH_VERSION::$PATCH_VERSION";
-        # echo "v0.0.1" | grep --perl-regexp 'v\d+\.\d+' -o
       - name: Get package versions
         run: |
           echo 'MAJOR VERSION: ${{ steps.pkg_versions.outputs.MAJOR_VERSION }}';
